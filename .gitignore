@@ -29,4 +29,4 @@ db/schema.rb
 db/data.yml
 
 doc/
-public/images/
+public/images/*.png
