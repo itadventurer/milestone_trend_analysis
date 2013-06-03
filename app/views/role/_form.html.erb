@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for [@project,@role] do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+			
+			<%= f.label :firstName, t('users.firstName') %>
+			<p><%= @user.firstName %></p>
+			
+			<%= f.label :lastName, t('users.lastName')  %>
+			<p><%= @user.lastName %></p>
+
+			<%= f.label :email, t('users.email')  %>
+			<p><%=  @user.email  %></p>
+
+		     <%= f.label :role, t('roles.role')  %>
+			<%= f.select(:name, [ [t('roles.observer'),'Observer'], [t('roles.projectManager'),'Project Manager'] ]) %>
+			<br />
+			<%= f.submit t("roles.edit"), class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

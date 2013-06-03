@@ -1,0 +1,35 @@
+<% provide :title, @milestone.name %>
+<% @nohead=true %>
+<section>
+	<asside class="sidebar">
+		<% if can? :manage, @project %>
+			<%= link_to t('forecasts.new'), new_project_milestone_forecast_path(@project, @milestone, @forecast), class: "btn btn-large btn-primary"  %>
+    <% end %>
+    <div class="btn-group">
+      <a class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+        <%= t 'forecasts.graph' %>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>		<%= link_to t('forecasts.svg'), params.merge(:format => :svg)%></li>
+        <li>    <%= link_to t('forecasts.png'), params.merge(:format => :svg,:type=>'png') %></li>
+      </ul>
+    </div>
+    <ul class="nav nav-list pull-left">
+      <%= render 'milestone_list' %>
+    </ul>
+    </asside>
+    <!--[if lt IE 9]>
+    <div class="span8">
+      <%= render 'milestone_box' %>
+    </div>
+    <![endif]-->
+    <![if !(lt IE 9)]>
+    <div class="span8 offset1">
+      <%= render 'milestone_box' %>
+    </div>
+    <![endif]>
+    </section>
+    <section style="margin:0">
+    <%= render 'forecast_box' %>
+    </section>

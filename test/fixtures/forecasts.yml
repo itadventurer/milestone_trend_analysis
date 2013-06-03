@@ -1,0 +1,63 @@
+# == Schema Information
+#
+# Table name: forecasts
+#
+#  id             :integer          not null, primary key
+#  dateForecast   :date
+#  budgetForecast :integer
+#  comment        :string(255)
+#  progress       :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  milestone_id   :integer
+#  spentBudget    :integer
+#  createDate     :date
+#  creator        :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dateForecast: 2013-01-11
+  budgetForecast: 200
+  comment: MyComment
+  progress: 0
+  creator: 980190962
+  createDate: 2012-10-11
+  created_at: 2012-11-01 16:05:15
+  updated_at: 2012-11-01 16:05:15
+  milestone_id: 298486374
+  spentBudget: 0
+two:
+  dateForecast: 2013-01-15
+  budgetForecast: 250
+  comment: MyComment
+  progress: 20
+  creator: 980190962
+  createDate: 2012-10-25
+  created_at: 2012-10-25 16:05:15
+  updated_at: 2012-10-25 16:05:15
+  milestone_id: 298486374
+  spentBudget: 50
+three:
+  dateForecast: 2012-01-18
+  budgetForecast: 270
+  comment: MyComment
+  progress: 30
+  creator: 980190962
+  createDate: 2012-11-10
+  created_at: 2012-11-10 16:05:15
+  updated_at: 2012-11-10 16:05:15
+  milestone_id: 298486374
+  spentBudget: 55
+four:
+  dateForecast: 2012-01-15
+  budgetForecast: 300
+  comment: MyComment
+  progress: 35
+  creator: 980190962
+  createDate: 2012-11-31
+  created_at: 2012-11-31 16:05:15
+  updated_at: 2012-11-31 16:05:15
+  milestone_id: 298486374
+  spentBudget: 61

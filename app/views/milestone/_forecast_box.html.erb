@@ -1,0 +1,46 @@
+<section class="forecast_list" style="margin:0">
+<h3><%= t ('forecasts.index') %></h3></br>
+<table class="table table-striped">
+	<thead>
+		<th><%= t('forecasts.create_date') %></th>
+		<th><%= t('forecasts.forecast_date') %></th>
+		<th><%= t('forecasts.forecast_spent') %></th>
+		<th><%= t('forecasts.current_budget') %></th>
+    <th><%= t('forecasts.progress') %></th>
+		<th><%= t('forecasts.comment') %></th>
+    <th><%= t('forecasts.creator') %></th>
+    <% if can?(:destroy, @milestone.forecasts.first) || can?(:update, @milestone.forecasts.first) %>
+      <th><%= t('forecasts.actions') %></th>
+    <% end %>
+	</thead>
+	<tbody>
+		<% @milestone.forecasts.each do |forecast| %>
+			<tr>
+				<td><%=l forecast.createDate, format: :long  %></td>
+				<td><%=l forecast.dateForecast, format: :long 	%></td>
+        <td><%=forecast.spentBudget %>&nbsp;<%= t('misc.currency') %></td>
+				<td><%=forecast.budgetForecast %>&nbsp;<%= t('misc.currency') %></td>
+        <td><%=forecast.progress %> % </td>
+				<td><%=forecast.comment %></td>
+        <td><%=forecast.creatorname(forecast.creator) %></td>
+    <% if can?(:destroy, @milestone.forecasts.first) || can?(:update, @milestone.forecasts.first) %>
+				<td style="min-width:75px">
+          <div class="btn-group">
+            <% if can? :update, forecast %>
+              <%=link_to edit_project_milestone_forecast_path(@project,@milestone,forecast), class:"btn" do %>
+                <i class="icon-pencil"></i>
+              <% end %>
+            <% end %>
+            <% if can? :destroy, forecast %>
+              <%=link_to project_milestone_forecast_path(@project,@milestone,forecast), class:"btn",confirm: t("milestones.delete?"),method: :delete do %>
+                <i class="icon-trash"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</section>

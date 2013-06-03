@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for @user do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :firstName, t('users.firstName') %>
+			<%= f.text_field :firstName %>
+			
+			<%= f.label :lastName, t('users.lastName')  %>
+			<%= f.text_field :lastName %>
+
+
+      <%= f.label :language, t('users.language') %>
+			<%= f.select(:language, [ [t('users.en'),'en'], [t('users.de'),'de'] ]) %>
+
+			<%= f.label :email, t('users.emailStar')  %>
+			<%= f.text_field :email %>
+
+			<%= f.label :password, t('users.passwordStar') %>
+			<%= f.password_field :password %>
+
+			<%if current_user != @user %>
+			  <%= f.label :isAdmin, t('users.admin?') %>
+			  <%= f.check_box :isAdmin %>
+			<%end %>
+
+			<br />
+			<% if @user.id.nil? %>
+				<%= f.submit t('users.create_user'), class: "btn btn-large btn-primary" %>
+			<% end %>
+			<% unless @user.id.nil? %>
+				<%= f.submit t('users.update_user'), class: "btn btn-large btn-primary" %>
+			<% end %>
+			
+		<% end %>
+	</div>
+</div>

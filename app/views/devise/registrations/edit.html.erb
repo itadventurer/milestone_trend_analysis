@@ -1,0 +1,33 @@
+<div class="center hero-unit">
+<h2><%=t('users.edit')%> </h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+	<%= f.label :email, t('users.email')  %>
+	<%= f.text_field :email %>
+
+	<%= f.label :firstName, t('users.firstName') %>
+	<%= f.text_field :firstName %>
+			
+	<%= f.label :lastName, t('users.lastName')  %>
+	<%= f.text_field :lastName %>
+
+  <div><%= f.label :password, t('users.new_pw') %> <i><%= t('misc.password_change') %></i><br />
+  <%= f.password_field :password, :autocomplete => "off" %></div>
+
+  <div><%= f.label :password_confirmation, t('users.password_confirmation') %>
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :current_password, t('users.passwordStar') %> <i><%= t('misc.password_current') %></i><br />
+  <%= f.password_field :current_password %></div>
+<%= f.label :language, t('users.language') %>
+<%= f.select(:language, [ [t('users.en'),'en'], [t('users.de'),'de'] ]) %>
+
+<div><%= f.submit t('users.update_user'), class: "btn btn-large btn-primary" %></div>
+<% end %>
+
+<% unless current_user.isAdmin?%>
+  <h3><%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></h3>
+<% end %>
+</div>

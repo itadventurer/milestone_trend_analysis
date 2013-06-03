@@ -1,0 +1,12 @@
+<% provide(:title,t('projects.my')) unless @all_projects%>
+<% provide(:title,t('projects.all')) if @all_projects%>
+<% @nohead=true %>
+
+<h1>
+  <%=t('projects.my') unless @all_projects%>
+  <%=t('projects.all') if @all_projects%>
+  <small><br /><%=link_to t("projects.new"), new_project_path %></small>
+</h1>
+<%= render 'project_list_table', state: "current" %>
+<%= render 'project_list_table', state: "finished" %>
+<%= render 'project_list_table', state: "aborted" %>

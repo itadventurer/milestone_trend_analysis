@@ -1,0 +1,18 @@
+// Place all the styles related to the Project controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin box {
+	box-sizing: border-box;
+	border:1px solid;
+	border-radius:4px;
+	margin: 5px 10px 5px -20px;
+	padding: 10px;
+}
+.milestone_box {
+	@include box;
+	border-color: #999;
+	&:hover {
+		background-color: #EFEFEF;
+	}
+}

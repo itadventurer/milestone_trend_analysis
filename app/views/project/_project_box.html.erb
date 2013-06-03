@@ -1,0 +1,31 @@
+<section>
+<h1><%= @project.name %>
+  <small>
+    <br />
+    <% if can? :update, @project %>
+      <%=link_to t("projects.edit"), edit_project_path(@project)%> |
+    <% end %>
+    <% if can? :destroy, @project %>
+      <%=link_to t("projects.delete"), @project, 
+        confirm: t("projects.delete?"),
+        method: :delete
+      %> | 
+    <% end %>
+    <% if can? :read, @project %>
+      <%=link_to t("projects.roles"), project_roles_path(@project)%>
+    <% end %>
+  </small>
+</h1>
+<p><%= t('milestones.count_finished', 	finished: @project.countFinishedMilestones,	all: @project.countMilestones) %></p>
+<%= raw(dragons) %>
+
+<section>
+<div class="span4">	
+  <%=render "shared/predict_date_box", predict: @project, labels: 'project' %>
+</div>
+<div class="span4">
+  <!-- Hier kommen die Mitwirkenden hin. ...sicher? -->
+  <%=render "shared/predict_budget_box", predict: @project, labels: 'project' %>
+</div>
+</section>
+</section>

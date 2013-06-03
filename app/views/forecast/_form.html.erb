@@ -1,0 +1,31 @@
+
+		<%= form_for [@project,@milestone,@forecast] do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+			
+			<%= f.label :createDate, t('forecasts.createDate') + " " + t('misc.date') %>
+			<%= f.text_field :createDate , class: "datepicker", :value => l(@forecast.createDate, format: :picker) %>
+
+			<%= f.label :dateForecast, t('forecasts.dateForecast') + " " + t('misc.date') %>
+			<%= f.text_field :dateForecast, class: "datepicker", :value => l(@forecast.dateForecast, format: :picker) %>
+			
+			<%= f.label :spentBudget, t('forecasts.spentBudget') + " " + t('misc.inputCurrency') %>
+			<%= f.text_field :spentBudget %>
+      
+			<%= f.label :budgetForecast, t('forecasts.budgetForecast') + " " + t('misc.inputCurrency') %>
+			<%= f.text_field :budgetForecast %>
+      
+      <%= f.label :comment, t('forecasts.comment') %>
+			<%= f.text_field :comment %>
+
+      <%= f.label :progress, t('forecasts.progressInput') + " " + t('misc.percent') %>
+			<%= f.text_field :progress %>
+
+			<br />
+			<% if @forecast.id.nil? %>				
+				<%= f.submit t('forecasts.create_forecast'), class: "btn btn-large btn-primary" %>
+			<% end %>
+			<% unless @forecast.id.nil? %>				
+				<%= f.submit t('forecasts.update_forecast'), class: "btn btn-large btn-primary" %>
+			<% end %>
+		<% end %>

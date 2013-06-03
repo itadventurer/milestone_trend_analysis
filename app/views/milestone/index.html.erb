@@ -1,0 +1,10 @@
+<% provide(:title,t('milestones.index')) %>
+
+<% @milestones.each do |milestone| %>
+	<div class="row">
+		<div class="span9">
+      <%= link_to t('milestones.new'), new_project_milestone_path, class: "btn btn-large btn-primary"  %>
+			<%= link_to milestone.name, project_milestone_path(milestone) %> 
+		</div>
+	</div>
+<% end %>

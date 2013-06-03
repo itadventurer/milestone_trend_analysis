@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="span4">
+    <h3><%= t ('milestones.current') %></h3>
+    <%= render 'milestone_list_box', milestones: @project.getCurrentMilestones %>
+  </div>
+  <div class="span4">
+    <h3><%= t ('milestones.finished') %></h3>
+    <%= render 'milestone_list_box', milestones: @project.getFinishedMilestones %>
+  </div>
+</div>

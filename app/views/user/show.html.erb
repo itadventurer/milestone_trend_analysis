@@ -1,0 +1,13 @@
+<% provide :title, t('users.show',  firstName: @user.firstName, lastName: @user.lastName) %>
+<% @nohead=true %>
+<h1><%=t('users.show',  firstName: @user.firstName, lastName: @user.lastName) %>
+  <small><br /><%= link_to "Edit", edit_user_path(@user) %> |
+    <%= link_to "Delete", user_path(@user), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %></small>
+</h1>
+
+<dl>
+	<dt><%= t('users.name') %></dt>
+	<dd><%= @user.firstName %> <%= @user.lastName %></dd>
+	<dt><%= t('users.email') %></dt>
+	<dd><%= @user.email %></dd>
+</dl>

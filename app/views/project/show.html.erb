@@ -1,0 +1,18 @@
+<% provide :title, @project.name %>
+<% @nohead=true %>
+<section>
+	<asside class="sidebar">
+		<% if can? :create_milestone, @project %>
+			<%= link_to t('milestones.new'), new_project_milestone_path(@project, @milestone), class: "btn btn-large btn-primary"  %>
+		<% end %>
+		<ul class="nav nav-list pull-left">
+			<%= render 'project_list', state: "current"  %>
+			<%= render 'project_list', state: "finished" %>
+			<%= render 'project_list', state: "aborted" %>
+		</ul>
+	</asside>
+	<div class="span8">
+		<%= render 'project_box' %>
+		<%= render 'milestone_boxes' %>
+	</div>
+</section>

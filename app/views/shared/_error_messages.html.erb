@@ -1,0 +1,13 @@
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+	  <%error=object.errors.count%>
+      <%=t('activerecord.errors.count')%> <%=error%> <%if error>1%><%=t('activerecord.errors.errors')%><%else%><%=t('activerecord.errors.error')%><%end%>.
+    </div>
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

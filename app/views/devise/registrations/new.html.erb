@@ -1,0 +1,28 @@
+<div class="center hero-unit">
+<h2><%=t('users.registration')%></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email, t('users.emailStar')  %>
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :firstName, t('users.firstName') %>
+  <%= f.text_field :firstName do %>
+  foo*
+<% end %></div>
+
+  <div><%= f.label :lastName, t('users.lastName') %>
+  <%= f.text_field :lastName %></div>
+
+  <div><%= f.label :password, t('users.passwordStar') %><i><%= t('misc.password_no_standard') %></i></br>
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation, t('users.password_confirmation') %>
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit t('users.register'), class: "btn btn-large btn-primary" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

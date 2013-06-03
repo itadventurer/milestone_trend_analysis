@@ -1,0 +1,11 @@
+<% milestones.each do |milestone| %>
+  <div class="milestone_box">
+    <h4><%= link_to milestone.name, project_milestone_path(@project,milestone) %></h4>
+    <div class="prediction_box">
+      <%=render "shared/predict_date_box", predict: milestone, labels: 'milestone' %>
+    </div>
+    <div class="prediction_box">
+      <%=render "shared/predict_budget_box", predict: milestone, labels: 'milestone' %>
+    </div>
+  </div>
+<% end %>

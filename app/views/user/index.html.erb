@@ -1,0 +1,40 @@
+<% provide(:title,t('users.all')) %>
+<% @nohead=true %>
+
+<h1>
+	<%=t('users.all')%>
+  <small><br /><%=link_to t("users.new"), new_user_path %></small>
+</h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><%= t('users.name') %></th>
+			<th><%= t('users.email') %></th>
+			<th><%= t('users.admin?') %></th>
+			<th><%= t('users.action') %></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.firstName %> <%= user.lastName %></td>
+				<td><%= user.email %></td>
+				<td><%= t('misc.yes') if user.isAdmin %></td>
+				<td>
+					<div class="btn-group">
+						<%=link_to user_path(user), class:"btn" do %>
+							<i class="icon-eye-open"></i>
+							<% end %>
+						<%=link_to edit_user_path(user), class:"btn" do %>
+							<i class="icon-pencil"></i>
+							<% end %>
+						<%=link_to user_path(user), class:"btn",confirm: t("milestones.delete?"),method: :delete do %>
+							<i class="icon-trash"></i>
+							<% end %>
+						</div>
+					</td>
+				</tr>
+			</tr>
+	<% end %>
+</tbody>
+</table>

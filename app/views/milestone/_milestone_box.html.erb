@@ -1,0 +1,24 @@
+<h1><%= @milestone.name %>
+  <% if can?(:update, @milestone) || can?(:destroy, @milestone) %>
+    <small>
+      <br />
+      <% if can? :update, @milestone %>
+        <%=link_to t("milestones.edit"), edit_project_milestone_path(@project,@milestone) %>
+      <% end %>
+      <% if can? :destroy, @milestone %> | 
+        <%=link_to t("milestones.delete"), project_milestone_path(@project,@milestone), 
+        confirm: t("milestones.delete?"),
+        method: :delete
+      %>
+    <% end %></small>
+<% end %>
+</h1>
+<section>
+<span class="span4">
+  <%=render "shared/predict_date_box", predict: @milestone, labels: 'milestone' %>
+</span>
+<span class="span4">
+  <%=render "shared/predict_budget_box", predict: @milestone, labels: 'milestone' %>
+</span>
+<section>
+

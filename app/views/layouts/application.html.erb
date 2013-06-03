@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= full_title(yield(:title)) %></title>
+  <script type="text/javascript">
+    locale="<%= I18n.locale %>"
+  </script>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+		<div class="breadcrumb">
+			<%= render_crumbs format: :html %>
+		</div>
+		<% unless @nohead %>
+			<h1><%= yield :title %></h1>
+		<% end %>
+          <%flash.each do |name, msg| %>
+			<%if msg.is_a?(String) %>
+			  <div class="alert alert-<%= name %>">
+				<a class="close" data-dismiss="alert">&#215;</a>
+				<%= content_tag :div, msg, :id => "flash_#{name}" %>
+                  </div>
+                <%end %>
+		<%end %>
+		<%= yield %>
+		<hr />
+    </div>
+  </body>
+</html>

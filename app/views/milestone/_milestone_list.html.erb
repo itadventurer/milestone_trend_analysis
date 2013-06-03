@@ -1,0 +1,10 @@
+<li class="nav-header"><%= t('milestones.current') %></li>
+<% @project.getCurrentMilestones.each do |milestone| %>
+<li <%= "class=active"  if milestone.id==@milestone.id %>>
+  <%= link_to milestone.name, project_milestone_path(@project, milestone) %> </li>
+<% end %>
+<li class="nav-header"><%= t('milestones.finished') %></li>
+<% @project.getFinishedMilestones.each do |milestone| %>
+<li <%= "class=active"  if milestone.id==@milestone.id %>>
+  <%= link_to milestone.name, project_milestone_path(@project, milestone) %> </li>
+<% end %>

@@ -1,0 +1,10 @@
+<dl class="dl-horizontal">
+  <% if @project.milestones.any? %>
+	  <dt><%= t('projects.initial_end') %>:</dt>
+	  <dd><%=l predict.getInitialEnd, format: :long %></dd>
+	  <dt><%= t('projects.estimated_end') %>:</dt>
+	  <dd><%=l predict.getEstimatedEnd, format: :long %></dd>
+	  <dt><%= t('projects.progress') %>:</dt>
+	  <dd><%= predict.getProgress %>&nbsp;%</dd>
+  <% end %>
+</dl>

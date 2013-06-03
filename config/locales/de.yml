@@ -1,0 +1,223 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  restricted area: "Zugriff verweigert"
+  activerecord:
+    attributes:
+      project:
+        projectStart: "Startdatum"
+    errors:
+      count: "Das Formular enthält"
+      error: "Fehler"
+      errors: "Fehler"
+      models:
+        project:
+          attributes:
+            name:
+              too_short: "ist zu kurz (mindestens 5 Zeichen)"	
+              blank: "darf nicht leer sein" 
+              taken: "bereits vorhanden"
+            projectStart:
+              blank: "ungültig"
+        milestone:
+          attributes:
+            name:
+              blank: "darf nicht leer sein"
+            projectedBudget:
+               blank: "darf nicht leer sein"
+               not_a_number: "ist keine Zahl"
+               greater_than_or_equal_to: "darf nicht kleiner als 0 sein"
+            date:
+              blank: "ungültig"
+        forecast:
+          attributes:		
+            spentBudget:
+              greater_than_or_equal_to: "darf nicht kleiner als 0 sein"
+              not_a_number: "ist keine Zahl"
+            budgetForecast:
+              greater_than_or_equal_to: "darf nicht kleiner als 0 sein"            						
+              not_a_number: "ist keine Zahl"
+            progress:
+              greater_than_or_equal_to: "darf nicht kleiner als 0 sein" 
+              less_than_or_equal_to: "darf nicht größer als 100 sein"	
+              not_a_number: "ist keine Zahl"
+            dateForecast:
+              blank: "ungültig"
+            createDate:
+              blank: "ungültig"
+        user:
+          attributes:
+            password:
+              too_short: "ist zu kurz (mindestens 6 Zeichen)"
+              blank: "darf nicht leer sein"
+              confirmation: "und Passwortbestätigung stimmen nicht überein" 
+            current_password:
+              blank: "darf nicht leer sein"
+              invalid: "ist falsch"							
+            email: 
+              invalid: "ist invalid"
+              taken: " ist bereits vorhanden"							
+  misc:
+    not_valid: "Eingabe ungültig"
+    home: "Home"
+    date: "(TT.MM.JJJJ)"
+    currency: "€"
+    inputCurrency: "(in €)"
+    percent: "(in %)"
+    appname: "Meilensteinverlaufsanalyse"
+    password_current: "(Wir brauchen dein aktuelles Passwort um Änderungen zu bestätigen)"
+    password_change: "(Feld leer lassen, wenn sie ihr Passwort nicht ändern möchten)"
+    password_no_standard: "(Nutzen sie nicht ihr T-Systems Passwort!)"
+    yes: "Ja"
+  project:
+    no_rights: "Unauthorisierte Aktion." 
+  projects:
+    deleted: "Projekt gelöscht"
+    state: "Status"
+    actions: "Aktionen"
+    update_project: "Projekt Editieren"
+    create_project: "Projekt Erstellen"
+    spent_budget: "Ausgegebenes Budget"
+    progress: "Fortschritt"
+    inputName: "Name*"
+    projectStart: "Projektstart*"
+    show: "Projekt: %{name}"
+    new: "Neues Projekt"
+    edit: "Projekt Editieren"
+    my: "Meine Projekte"
+    current_state: "aktuell"
+    finished_state: "beendet"
+    aborted_state: "abgebrochen"
+    current: "Aktuelle Projekte"
+    finished: "Beendete Projekte"
+    aborted: "Abgebrochene Projekte"
+    start: "Startdatum"
+    initial_end: "Geplantes Enddatum"
+    initial_budget: "Geplantes Budget"
+    left_budget: "Restbudget"
+    estimated_budget: "Voraussichtliche Kosten"
+    estimated_end: "Vorraussichtliches Enddatum"
+    no_finished: "Keine beendeten Projekte"
+    no_current: "Keine aktuellen Projekte"
+    no_aborted: "Keine abgebrochenen Projekte"
+    delete: "Löschen"
+    delete?: "Sind sie sicher?"
+    all: "Alle Projekte"
+    updated: "Projekt aktualisiert"
+    roles: "Zeige Projektmitglieder"
+  milestones:
+    deleted: "Meilenstein gelöscht"
+    graph_forecast_date: "Vorhersage"
+    graph_date: "Datum"
+    graph_logic: "Berechnung"
+    graph_estimated_end: "Vorraussichtliches Ende"
+    graph_forecast: "Vorhersagedaten"
+    update_milestone: "Meilenstein Editieren"
+    create_milestone: "Meilenstein Erstellen"
+    name: "Name*"
+    date: "Datum*"
+    count_finished: "Abgeschlossene Meilensteine: %{finished}/%{all}"
+    current: "Aktuelle Meilensteine"
+    finished: "Abgeschlossene Meilensteine"
+    new: "Neuer Meilenstein"
+    estimated_budget: "Voraussichtliche Kosten"
+    estimated_end: "Voraussichtliches Enddatum"
+    index: "Meilensteine"
+    edit: "Meilenstein Editieren"
+    delete: "Löschen"
+    delete?: "Sind sie sicher?"
+    updated: "Meilenstein aktualisiert"
+  forecasts:
+    deleted: "Vorhersage gelöscht"
+    update_forecast: "Vorhersage Editieren"
+    create_forecast: "Vorhersage Erstellen"
+    createDate: "Erstellungsdatum*"
+    budgetForecast: "Geplantes Budget*"
+    dateForecast: "Vorhersagedatum*"
+    spentBudget: "Ausgegebenes Budget*"
+    new: "Neue Vorhersage"
+    index: "Vorhersagen"
+    create_date: "Erstellungsdatum"
+    forecast_date: "Vorhersagedatum"
+    forecast_spent: "Ausgegebenes Budget"
+    current_budget: "Geplantes Budget"
+    comment: "Kommentar"
+    actions: "Aktionen"
+    creator: "Ersteller"
+    progress: "Fortschritt"
+    progressInput: "Grad der Fertigstellung*"
+    edit: "Vorhersage Editieren"
+    updated: "Vorhersage Aktualisiert"
+    graph: "Graph"
+    svg: "Als SVG"
+    png: "Als PNG"
+  date:
+    formats:
+      picker: "%d.%m.%Y"
+      long: "%d.%m.%Y"
+  home:
+    title: "Willkommen auf unserer Meilensteinverlaufsanalyse-Anwendung"
+    sign_up: "Jetzt Registieren!"
+    sign_in: "Einloggen"
+  users:
+    new_pw: "Neues Passwort"
+    change_pw: "Passwort ändern"
+    send_pw: "Sende mir Anweisungen zum Zurückstetzen des Passworts"
+    forgot_pw: 'Passwort Vergessen?'
+    action: "Aktion"
+    login: "Einloggen"
+    registration: "Registration"
+    update_user: "Nutzer Editieren"
+    create_user: "Nutzer Erstellen"
+    register: "Jetzt Registrieren!"
+    update: "Nutzer Erfolgreich Aktualisiert!"
+    email: "E-Mail"
+    emailStar: "E-Mail*"
+    passwordStar: "Passwort*"
+    password_confirmation: "Passwort Bestätigung"
+    all: "Nutzerübersicht"
+    new: "Nutzer Erstellen"
+    admin?: "Administrator"
+    edit: "Nutzer Editieren"
+    show: "Nutzer: %{firstName} %{lastName}"
+    fullname: "%{firstName} %{lastName}"
+    welcome: "Willkommen %{firstName} %{lastName}!"
+    sign_out: "Ausloggen"
+    sign_in: "Einloggen"
+    profile: "Mein Profil"
+    resend_confirmation: "Bestätgungsanweisungen Erneut Senden"
+    hello: "Hallo %{name}!"
+    confirm_account_text: "Mit dem unten stehenden Link können sie ihre E-Mail-Adresse bestätigen."
+    confirm_account_link: 'Account Bestätigen'
+    change_password_text: 'Jemand möchte ihr Passwort ändern, mit dem unten stehenden Link können sie dies bestätigen.'
+    change_password_link: 'Passwort Ändern'
+    change_password_ignore_mail: "Wenn sie diese Anfrage nicht gestellt haben, ignorieren sie bitte diese E-Mail."
+    change_password_ignore_mail2: "Ihr Passwort wird nicht geändert bis sie den Link angeklickt haben und ein neues Passwort erstellt haben."
+    created: "Nutzer erstellt"
+    updated: "Nutzer aktualisiert"
+    deleted: "Nutzer gelöscht"
+    admin_delete_self: "Ein Administrator kann sich nicht selbst löschen"
+    lastName: "Nachname"
+    firstName: "Vorname"
+    language: "Sprache"
+    password: "Passwort"
+    de: "Deutsch"
+    en: "English"
+  admin:
+    usermanagement: "Nutzeradministration"
+    projectmanagment: "Projektadministration"
+    administration: "Administration"
+  roles:
+    user: "Nutzer"
+    create_role: "Hinzufügen"
+    new: "Neues Projektmitglied"
+    all: "Projektmitglieder"
+    add: "Projektmitglied Hinzufügen"
+    created: "Nutzer wurde erfolgreich dem Projekt hinzugefügt!"
+    edit: "Projektmitglied Editieren"
+    update: "Projektmitglied wurde erfolgreich aktualisiert!"
+    delete: "Nutzer wurde aus dem Projekt entfernt!"
+    observer: "Projektmitglied"
+    project manager: "Projektmanager"
+    role: "Projektrolle"

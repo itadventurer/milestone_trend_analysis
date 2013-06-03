@@ -1,0 +1,159 @@
+<%
+# Defines Offsets
+x_o=90
+y_o=100
+# Pic-Dimensions
+w=600
+h=600
+# Anzahl der Gitternetzelinien
+interval_anz=10
+# Gitternetzabstand
+x_d=(w-x_o)/interval_anz
+y_d=(h-y_o)/interval_anz
+dy=y_o
+dx=x_o
+%>
+<%# Minimale und Maximale Daten fuer Achsen bestimmen und auf vollen 10er aufrunden %>
+<% forecasts_by_forecast=@milestone.forecasts.sort {|a, b| a.send('dateForecast') <=> b.send('dateForecast')} %>
+<% forecasts_by_create=@milestone.forecasts.sort {|a, b| a.send('createDate') <=> b.send('createDate')} %>
+<% min_y_date=@milestone.getEstimatedEnd-2 %>
+<% max_y_date=@milestone.getEstimatedEnd+5 %>
+<% min_x_date=[Date.today,@milestone.getEstimatedEnd].min-2 %> 
+<% max_x_date=[Date.today,@milestone.getEstimatedEnd].max+5 %> 
+<% unless @milestone.forecasts.first.nil? %>
+	<% min_y_date=[@milestone.getEstimatedEnd,forecasts_by_forecast.first.dateForecast].min-2 %>
+	<% max_y_date=[@milestone.getEstimatedEnd,forecasts_by_forecast.last.dateForecast].max+5 %> 
+	<% min_x_date=forecasts_by_create.first.createDate-2 %>
+	<% max_x_date=[@milestone.getEstimatedEnd,forecasts_by_create.last.createDate].max+5 %>	
+<% end %>
+<% xinterval=(max_x_date-min_x_date).round(-1) %>
+<% yinterval=(max_y_date-min_y_date).round(-1) %>
+<% max_y_date=min_y_date+yinterval %>
+<% max_x_date=min_x_date+xinterval %>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+ 
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+version="1.1" baseProfile="full"
+width="<%=w+x_o%>" height="<%=h+y_o%>">
+<defs>
+<style type="text/css"><![CDATA[
+text.heading {
+  font-size: 20px; 
+  font-weight: bold;
+}
+text.legend {
+  font-size: 13px;
+  font-weight: normal;
+}
+line.grid {
+stroke: lightgrey;
+stroke-width: 1;
+}
+.forecast:hover .more {
+display:block;
+}
+.more {
+display:none
+}
+]]></style>
+</defs>
+
+<!-- Hauptbeschriftungen und Legende-->
+
+<text class="heading"  x="<%=w/2+x_o/2%>" y="<%=y_o/4%>" fill="black" style="text-anchor: middle;"><%=@milestone.name%></text>
+<text class="legend"  x="<%=2*x_o%>" y="<%=2*y_o/4%>" fill="black" style="text-anchor: left;"><%= t('milestones.graph_estimated_end')%></text>
+<text class="legend"  x="<%=2*x_o%>" y="<%=3*y_o/4%>" fill="black" style="text-anchor: left;"><%= t('milestones.graph_forecast')%></text>
+<text class="legend"  x="<%=w/2+x_o%>" y="<%=2*y_o/4%>" fill="black" style="text-anchor: left;"><%= t('milestones.graph_logic')%></text>
+<text class="legend"  x="<%=w/2+x_o%>" y="<%=3*y_o/4%>" fill="black" style="text-anchor: left;"><%= t('milestones.graph_estimated_end')%>: <%=l @milestone.getEstimatedEnd, format: :long%></text>
+<text class="legend"  x="<%=x_o%>" y="<%=3*y_o/4%>" fill="black" style="text-anchor: middle;"><%= t('milestones.graph_forecast_date')%></text>
+<text class="legend"  x="<%=w+20%>" y="<%=h%>" fill="black" style="text-anchor: middle;" transform="rotate(90 <%= w+20 %> <%= h %>)"><%= t('milestones.graph_date')%></text>
+<circle cx="<%=w/2+x_o/2 %>" cy="<%=2*y_o/4-6 %>" r="5" stroke="black" stroke-width="1" fill="blue"/>
+<circle cx="<%=w/2+x_o/2 %>" cy="<%=3*y_o/4-6 %>" r="5" stroke="black" stroke-width="1" fill="red"/>
+<line x1="<%=w/2+x_o+100 %>" x2="<%=w/2+x_o+160%>" y1="<%=2*y_o/4-5 %>" y2="<%=2*y_o/4-5%>" stroke="green" stroke-dasharray="4,3" stroke-width="2" />
+
+<!-- Gitternetz horizontal und Beschriftung-->
+<% while dy<= h do %>
+	<% date=max_y_date-(yinterval)*(dy-y_o)/y_d/interval_anz %>
+	<line x1="<%= x_o %>" x2="<%= w%>" y1="<%= dy %>" y2="<%=dy %>" class="grid" />
+	<text class="legend" x="10" y="<%= dy+4 %>" fill="black"><%=l date, format: :long%></text>
+	<% dy=y_d+dy%>
+<% end %>
+
+<!-- Gitternetz vertikal und Beschriftung -->
+<% while dx<= w do %>
+	<% date=min_x_date+(xinterval)*(dx-x_o)/x_d/interval_anz %>
+	<line x1="<%= dx %>" x2="<%= dx%>" y1="<%= y_o %>" y2="<%=h %>" class="grid" />
+	<text class="legend" x="<%= dx+5 %>" y="<%= h+8 %>" fill="black" transform="rotate(90 <%= dx %> <%= h+3 %>)"><%=l date, format: :long%></text>
+	<% dx=dx+x_d %>
+<% end %>
+
+<!-- Koordinatenachsen -->
+<line x1="<%= x_o %>" x2="<%= x_o%>" y1="<%= y_o %>" y2="<%=h%>" stroke="black" stroke-width="1" />
+<line x1="<%= x_o %>" x2="<%= w%>" y1="<%= h %>" y2="<%=h%>" stroke="black" stroke-width="1" />
+<polygon points="<%=x_o-5%> <%=y_o%> <%=x_o+5%> <%=y_o%> <%=x_o%> <%=y_o-15%>"/>
+<polygon points="<%=w%> <%=h-5%> <%=w%> <%=h+5%> <%=w+15%> <%=h%>"/>
+
+<!-- Graphen Zeichnen -->
+<% si=0 %>
+<% xwert=x_o+((w-x_o)*(Date.today-min_x_date)/xinterval).to_i %>
+<% ywert=y_o+((h-y_o)*(max_y_date-@milestone.getEstimatedEnd)/yinterval).to_i %>
+<% forecasts_by_create.each do |f| %>
+  <% xlast=xwert%>
+  <% ylast=ywert%>
+  <% xwert=x_o+((w-x_o)*(f.createDate-min_x_date)/xinterval).to_i %>
+  <% ywert=y_o+((h-y_o)*(max_y_date-f.dateForecast)/yinterval).to_i %> 
+  <% if si==1 %>
+    <line x1="<%=xlast %>" x2="<%=xwert%>" y1="<%=ylast %>" y2="<%=ywert%>" stroke="black" stroke-width="2" /> 
+  <% end %>
+  <% si=1 %>
+<% end %>
+
+<!-- Berechnung Zeichnen -->
+<% unless @milestone.forecasts.first.nil? %>
+  <% xdicke=10.0 %>
+  <% yfirst=y_o+((h-y_o)*(max_y_date-forecasts_by_create.first.dateForecast)/yinterval).to_i %>
+  <% xfirst=x_o+((w-x_o)*(forecasts_by_create.first.createDate-min_x_date)/xinterval).to_i %>
+  <% xend=x_o+((w-x_o)*(@milestone.getEstimatedEnd-min_x_date)/xinterval).to_i %>
+  <% ywert=y_o+((h-y_o)*(max_y_date-@milestone.getEstimatedEnd)/yinterval).to_i %>
+  <% yend=1.0*ywert %>	
+  <% xlast= xfirst %>
+  <% ylast=0 %>
+  <% deltay=yend-yfirst %>
+  <% deltax=xend-xfirst %>
+  <% xwert=xfirst %>		
+  <% while xwert<=xend-xdicke/2 %>
+    <% xwert=xwert+xdicke %>
+    <% ywert=deltay*(((xwert-xfirst)/(deltax))**(0.5))%>
+    <line x1="<%=xlast %>" x2="<%=xwert%>" y1="<%=(yfirst+ylast) %>" y2="<%=(yfirst+ywert)%>" stroke="green" stroke-dasharray="4,3" stroke-width="2" />
+    <% xlast=xwert %>
+    <% ylast=ywert %>				
+  <% end %>
+<% end %>
+
+<!-- Punkte Zeichen -->
+<!-- Forecasts Zeichnen -->
+<% forecasts_by_create.each do |f| %>
+  <% xwert=x_o+((w-x_o)*(f.createDate-min_x_date)/xinterval).to_i %>
+  <% ywert=y_o+((h-y_o)*(max_y_date-f.dateForecast)/yinterval).to_i %> 
+    <g class="forecast">
+  <circle cx="<%=xwert %>" cy="<%=ywert %>" r="5" stroke="black" stroke-width="1" fill="red"/> 
+      <g class="more">       
+        <text x="<%=[xwert+17,w-120].min%>" y="<%=ywert+22%>"><%=t('milestones.graph_forecast_date')%>: <%=l f.createDate, format: :long %></text>
+        <text x="<%=[xwert+17,w-120].min%>" y="<%=ywert+44%>"><%=t('milestones.graph_date')%>: <%=l f.dateForecast, format: :long %></text>
+      </g>
+    </g>
+<% end %>
+
+<!-- Estimated End Zeichnen -->
+<% xwert=x_o+((w-x_o)*(@milestone.getEstimatedEnd-min_x_date)/xinterval).to_i %>
+<% ywert=y_o+((h-y_o)*(max_y_date-@milestone.getEstimatedEnd)/yinterval).to_i %>
+<g class="forecast">
+<circle cx="<%=xwert %>" cy="<%=ywert %>" r="5" stroke="black" stroke-width="1" fill="blue"/>
+<g class="more">
+        <text x="<%=[xwert+17,w-120].min%>" y="<%=ywert+22%>"><%=t('milestones.graph_forecast_date')%>: <%=l @milestone.getEstimatedEnd, format: :long %></text>
+        <text x="<%=[xwert+17,w-120].min%>" y="<%=ywert+44%>"><%=t('milestones.graph_date')%>: <%=l @milestone.getEstimatedEnd, format: :long %></text>
+      </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for [@project,@role] do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+			
+			<%= f.label :user, t('roles.user') %>
+			<%= f.collection_select(:user_id, @users, :id, :email) %>
+			
+      <%= f.label :role, t('roles.role') %>
+			<%= f.select(:name, [ [t('roles.observer'),'Observer'], [t('roles.projectManager'),'Project Manager'] ]) %>
+			<br />
+			<%= f.submit t('roles.create_role'), class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

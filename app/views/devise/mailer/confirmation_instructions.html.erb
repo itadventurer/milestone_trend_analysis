@@ -1,0 +1,4 @@
+<p><%= t('users.welcome', firstName: @resource.email) %></p>
+
+<p><%= t('users.confirm_account_text') %></p>
+<p><%= link_to t('users.confirm_account_text') , confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

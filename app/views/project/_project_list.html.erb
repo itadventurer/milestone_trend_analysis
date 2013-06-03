@@ -1,0 +1,9 @@
+<% unless @projects[state].empty? %>
+  <li class="nav-header"><%= t('projects.'+state) %></li>
+  <% @projects[state].each do |p|%>
+    <li
+    <%= "class=active"  if p.id==@project.id %>
+    ><%= link_to p.name, p %>
+    </li>
+  <%end%>
+<%end%>

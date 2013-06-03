@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for [@project, @milestone] do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+
+			  <%= f.label :name, t('milestones.name') %>
+			  <%= f.text_field :name %>
+        
+        <%= f.label :date, t('milestones.date') + " " + t('misc.date') %>
+			  <%= f.text_field :date, class: "datepicker", :value => l(@milestone.date, format: :picker) %>
+       
+        
+         
+        <%= f.label :projectedBudget, t('projects.initial_budget') + " " + t('misc.inputCurrency') %>
+			  <%= f.text_field :projectedBudget %>
+       
+			<br />
+			<% unless @milestone.id.nil? %>				
+				<%= f.submit t('milestones.update_milestone'), class: "btn btn-large btn-primary" %>
+			<% end %>
+			<% if @milestone.id.nil? %>
+				<%= f.submit t('milestones.create_milestone'), class: "btn btn-large btn-primary" %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

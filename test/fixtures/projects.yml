@@ -1,0 +1,48 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  projectStart :date
+#  state        :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Project1
+  projectStart: 2012-09-10
+  state: current				
+  created_at: 03.12.2012 15:55:28
+  updated_at: 04.12.2012 14:55:31
+
+two:
+  name: Project2
+  projectStart: 2012-10-10
+  state: current		
+  created_at: 05.12.2012 16:16:16
+  updated_at: 05.12.2012 16:16:16
+
+three:
+  name: Project3
+  projectStart: 2012-08-10
+  state: current		
+  created_at: 05.12.2012 16:16:16
+  updated_at: 05.12.2012 16:16:16
+
+four:
+  name: Project4
+  projectStart: 2012-05-01
+  state: finished		
+  created_at: 05.12.2012 16:16:16
+  updated_at: 05.12.2012 16:16:16
+
+five:
+  name: Project5
+  projectStart: 2012-04-20
+  state: finished		
+  created_at: 05.12.2012 16:16:16
+  updated_at: 05.12.2012 16:16:16

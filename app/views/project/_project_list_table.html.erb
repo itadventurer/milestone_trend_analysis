@@ -1,0 +1,38 @@
+<% unless @projects[state].empty? %>
+  <h2><%= t('projects.'+state) %></h2>
+  <table class="table table-striped">
+    <thead>
+      <th><%= t('projects.name') %></th>
+      <th><%= t('projects.initial_end') %></th>
+      <th><%= t('projects.estimated_end') %></th>
+      <th><%= t('projects.initial_budget') %></th>
+      <th><%= t('projects.estimated_budget') %></th>
+      <th><%= t('projects.actions') %></th>
+    </thead>
+    <tbody>
+      <% @projects[state].each do |project| %>
+        <tr>
+          <td><%=link_to project.name, project %></td>
+          <td><%=l project.getInitialEnd, format: :long  %></td>
+          <td><%=l project.getEstimatedEnd, format: :long  %></td>
+          <td><%=project.getInitialBudget %>&nbsp;<%= t 'misc.currency' %></td>
+          <td><%=project.getEstimatedBudget %>&nbsp;<%= t 'misc.currency' %></td>
+          <td>
+            <div class="btn-group">
+              <% if can? :update, project %>
+                <%=link_to edit_project_path(project), class:"btn" do %>
+                  <i class="icon-pencil"></i>
+                <% end %>
+              <%end %>
+              <% if can? :destroy, project %>
+                <%=link_to project_path(project), class:"btn",confirm: t("milestones.delete?"),method: :delete do %>
+                  <i class="icon-trash"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

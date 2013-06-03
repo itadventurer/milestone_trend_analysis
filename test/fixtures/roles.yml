@@ -1,0 +1,48 @@
+# == Schema Information
+#
+# Table name: roles
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  user_id    :integer
+#  project_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: projectManager
+  user_id: 980190962
+  project_id: 980190962
+  created_at: 05.12.2012
+  updated_at: 05.12.2012				
+
+two:
+  name: projectManager
+  user_id: 980190962
+  project_id: 298486374
+  created_at: 05.12.2012
+  updated_at: 05.12.2012
+
+three:
+  name: projectManager
+  user_id: 980190962
+  project_id: 113629430
+  created_at: 05.12.2012
+  updated_at: 05.12.2012				
+
+four:
+  name: projectManager
+  user_id: 980190962
+  project_id: 281110143
+  created_at: 05.12.2012
+  updated_at: 05.12.2012
+
+five:
+  name: projectManager
+  user_id: 980190962
+  project_id: 1018350795
+  created_at: 05.12.2012
+  updated_at: 05.12.2012
