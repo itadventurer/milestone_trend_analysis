@@ -7,6 +7,10 @@ gem 'cancan', '~> 1.6.8'
 gem "crummy", "~> 1.6.0"
 gem 'yaml_db', "~> 0.2.3"
 
+# To fix rake version to compatible one
+# See https://stackoverflow.com/a/35893625/4786733
+gem 'rake', '< 11.0'
+
 # SQLite und Rspec benötigen wir nur in Development und Test
 group :development, :test do
 	gem 'sqlite3', "~> 1.3.6"
